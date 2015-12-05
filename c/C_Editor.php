@@ -52,23 +52,37 @@ class C_Editor extends C_Base {
 
   //Удаление статьи
   public function action_del() {
-    $this->title .= '::Удаление статьи';
-    $text=text_set('');
-    $this->content = $this->Template('v/v_index.php', array('text' => $text));
+
+    $id=(int)$_GET['id'];
+    if (!$id) {
+      die("Не верный id");
+    }
+
+    articles_delete($id);
+    header('Location: index.php');
+
   }
 
   //Добавление статьи
   public function action_new(){
-    $this->title .= '::Добавить статью';
 
-    if($this->isPost())
-    {
-      text_set($_POST['text']);
-      header('location: index.php');
-      exit();
+    $title_art = "";
+    $content_art = "";
+    $error = false;
+
+// Обработка отправки формы
+    if (isset($_POST['submit'])) {
+      if ($_POST['title_art'] != "" && $_POST['content_art'] != "") {
+        articles_new($_POST['title_art'], $_POST['date_art'], $_POST['content_art']);
+        die(header('Location: index.php'));
+      }
+      $title_art = $_POST['title_art'];
+      $content_art = $_POST['content_art'];
+      $error = true;
     }
 
-    $text = text_get();
-    $this->content = $this->Template('v/v_new.php', array('text' => $text));
+    $this->title .= '::Добавить статью';
+
+    $this->content = $this->Template('v/v_new.php');
   }
 }
