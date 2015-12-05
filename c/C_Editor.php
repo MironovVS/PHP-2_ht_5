@@ -32,17 +32,17 @@ class C_Editor extends C_Base {
 
   //Просмотр одной статьи
   public function action_show(){
-    $this->title .= '::Просмотр статьи';
 
-    if($this->isPost())
-    {
-      text_set($_POST['text']);
-      header('location: index.php');
-      exit();
+    $id=(int)$_GET['id'];
+    if (!$id) {
+      die("Не верный id");
     }
 
-    $text = text_get();
-    $this->content = $this->Template('v/v_Article.php', array('text' => $text));
+    $article = articles_get($id);
+
+    $this->title .= '::Просмотр статьи';
+
+    $this->content = template('v/v_article.php', array('article'=>$article));
   }
 
   //Удаление статьи

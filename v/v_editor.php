@@ -19,7 +19,7 @@ content - текст
 					<?php echo $article["$i"]['name'] ?>
 				</td>
 				<td>
-					<a href="article.php?id=<?php echo $article["$i"]['id']?>">Просмотр</a>
+					<a href="index.php?c=editor&act=show&id=<?php echo $article["$i"]['id']?>">Просмотр</a>
 				</td>
 				<td>
 					<a href="delete.php?id=<?php echo $article["$i"]['id']?>">Удалить</a>
