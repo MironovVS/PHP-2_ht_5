@@ -22,10 +22,10 @@ content - текст
 					<a href="index.php?c=editor&act=show&id=<?php echo $article["$i"]['id']?>">Просмотр</a>
 				</td>
 				<td>
-					<a href="delete.php?id=<?php echo $article["$i"]['id']?>">Удалить</a>
+					<a href="index.php?c=editor&act=del&id=<?php echo $article["$i"]['id']?>">Удалить</a>
 				</td>
 				<td>
-					<a href="edit.php?id=<?php echo $article["$i"]['id'] ?>">Редактировать</a>
+					<a href="index.php?c=editor&act=edit&id=<?php echo $article["$i"]['id'] ?>">Редактировать</a>
 				</td>
 			</tr>
 		<?php endfor ?>

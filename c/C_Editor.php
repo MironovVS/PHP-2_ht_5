@@ -17,17 +17,22 @@ class C_Editor extends C_Base {
 
   //редактирование статьи
   public function action_edit(){
-    $this->title .= '::Редактирование';
 
-    if($this->isPost())
-    {
-      text_set($_POST['text']);
-      header('location: index.php');
-      exit();
+    $id=(int)$_GET['id'];
+    if (!$id) {
+      die("Не верный id");
     }
 
-    $text = text_get();
-    $this->content = $this->Template('v/v_edit.php', array('text' => $text));
+    $article_edit = articles_get($id);
+
+    if (isset($_POST['submit'])) {
+      articles_edit($_POST['id'], $_POST['name'], $_POST['content']);
+      die(header('Location: index.php'));
+    }
+
+    $this->title .= '::Редактирование';
+
+    $this->content = $this->Template('v/v_edit.php', array('article_edit'=>$article_edit));
   }
 
   //Просмотр одной статьи
