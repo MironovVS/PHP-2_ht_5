@@ -5,6 +5,7 @@
     <td>Дата создания</td>
     <td>Текст статьи</td>
   </tr>
+
   <?php foreach ($article as $art):
     for ($i = 0 ; $i < count($art); $i++):?>
       <tr>
