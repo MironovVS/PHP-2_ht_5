@@ -6,11 +6,13 @@ class C_Editor extends C_Base {
 
   //Посмотр всех статей
   public function action_list() {
+
+    //Подготовка данных
+    $articles_all = articles_all();
+
     $this->title .= '::Просмотр статей';
 
-    $text = text_get();
-    $text = mb_substr($text, 0, 200);
-    $this->content = $this->Template('v/v_editor.php', array('text' => $text));
+    $this->content = $this->Template('v/v_editor.php', array('articles_all' => $articles_all));
   }
 
   //редактирование статьи

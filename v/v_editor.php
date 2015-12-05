@@ -10,20 +10,24 @@ content - текст
 */
 
 ?>
-<b><a href="index.php?c=editor&act=new">Новая статья</a></b>
+<b><a href="new.php">Новая статья</a></b>
 <table>
-		<tr>
+	<?php foreach ($articles_all as $article): ?>
+		<?php for($i=0; $i<count($article); $i++): ?>
+			<tr>
 				<td width="40%">
-					<?php echo $text?>...
+					<?php echo $article["$i"]['name'] ?>
 				</td>
 				<td>
-					<a href="index.php?c=editor&act=show">Просмотр</a>
+					<a href="article.php?id=<?php echo $article["$i"]['id']?>">Просмотр</a>
 				</td>
 				<td>
-					<a href="index.php?c=editor&act=del">Удалить</a>
+					<a href="delete.php?id=<?php echo $article["$i"]['id']?>">Удалить</a>
 				</td>
 				<td>
-					<a href="index.php?c=editor&act=edit">Редактировать</a>
+					<a href="edit.php?id=<?php echo $article["$i"]['id'] ?>">Редактировать</a>
 				</td>
 			</tr>
+		<?php endfor ?>
+	<?php endforeach ?>
 </table>
